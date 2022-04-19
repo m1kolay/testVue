@@ -1,9 +1,9 @@
 <template>
     <div class="productContainer">
         <div class="productContainer__wrapper">
-            <ProductFilterPanel/>
+            <ProductFilterPanel :priceSortHandler="priceSortHandler" :nameFilterHandler="nameFilterHandler" :isSorted="isSorted"/>
             <div class="productContainer__products">
-                <ProductItem v-for="productItem in productItems" :key="productItem.id" :productItem="productItem"/>
+                <ProductItem v-for="productItem in filteredItems" :key="productItem.id" :productItem="productItem"/>
             </div>
         </div>
     </div>
@@ -11,24 +11,46 @@
 
 <script>
 
-import ProductFilterPanel from "./ProductFilterPanel"
-import ProductItem from "./ProductItem"
-
+import ProductFilterPanel from "./common/ProductFilterPanel"
+import ProductItem from "./common/ProductItem"
+import { ProductItems } from "../constants/mockProductItems"
 
 export default {
     data() {
         return{
+            isSorted: false,
+            productItems: ProductItems,
+            filteredItems: [],
         }
     },
   name: 'ProductContainer',
-  computed: {
-      productItems () {
-          return this.$store.state.productItems
-      }
-  },
   components: {
     ProductFilterPanel,
     ProductItem
+  },
+  methods: {
+    priceSortHandler() {
+        if(!this.isSorted) {
+            this.filteredItems.sort((item1, item2) => item1.price - item2.price)
+            this.isSorted = true
+        } else {
+            this.filteredItems.sort((item1, item2) => item2.price - item1.price)
+            this.isSorted = false
+        }           
+      },
+    nameFilterHandler(event){
+        const searchValue = event.target.value
+        const tempFilterItems = this.productItems.filter(item => item.name.toLowerCase().includes(searchValue.toLowerCase()));
+        this.filteredItems = [...tempFilterItems]
+    }, 
+  },
+    watch: {
+    question: {
+      handler(newQuestion) {
+          this.filteredItems = this.productItems
+      },
+      immediate: true
+    }
   }
 }
 
@@ -41,10 +63,15 @@ export default {
         position: relative;
         left: 360px;
         background: #F6F6F6;
+        overflow: hidden;
 
         &__wrapper {
             padding: 30px;
             height: 100%;
+
+            @media (max-width: 905px) {
+                padding: 15px;
+            }
         }
 
         &__products {
@@ -52,6 +79,43 @@ export default {
             flex-wrap: wrap;
             row-gap: 20px;
             column-gap: 20px;
+            justify-content: start;
+            max-height: 700px;
+            padding-right: 15px;
+
+            @media (max-width:1600px) {
+                max-height: 630px;
+            }
+
+            @media (max-width:951px) {
+                justify-content: center;
+                column-gap: 20px;
+            }
+
+            @media (max-width:905px) {
+                max-height: 515px;
+            }
+
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: white;
+                box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.02);
+                border-radius: 2px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: #FF9900;
+            }
+
+            &:hover {
+                &::-webkit-scrollbar-thumb {
+                background: #a36302;
+            }
+            }
         }
     }
 </style>

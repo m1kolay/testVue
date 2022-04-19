@@ -66,7 +66,7 @@ export default {
           width: 14px;
           height: 10px;
           display: block;
-          background: url("../assets/check.svg") no-repeat;
+          background: url("../../assets/check.svg") no-repeat;
           position: absolute;
           top: 23px;
           left: 14px;

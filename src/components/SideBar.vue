@@ -41,8 +41,8 @@
 
 <script>
 
-import CheckboxItem from "./CheckboxItem.vue"
-import SideBarFilterItem from "./SideBarFilterItem"
+import CheckboxItem from "./common/CheckboxItem.vue"
+import SideBarFilterItem from "./common/SideBarFilterItem"
 import Slider from '@vueform/slider'
 
 export default {

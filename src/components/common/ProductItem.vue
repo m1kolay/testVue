@@ -1,9 +1,9 @@
 <template>
     <div class="productItem" :style="{'borderBottomColor':productItem.rare}">
         <div class="productItem__imgs">
-            <img :src="require(`../assets/pets/${productItem.imgPet}`)" :alt="productItem.id"/>
+            <img :src="require(`../../assets/pets/${productItem.imgPet}`)" :alt="productItem.id"/>
             <div class="productItem__statuses">
-                <img v-for="status in productItem.statuses" :key="status" :src="require(`../assets/productStatus/${status}`)" :alt="productItem.id"/>
+                <img v-for="status in productItem.statuses" :key="status" :src="require(`../../assets/productStatus/${status}`)" :alt="productItem.id"/>
             </div>
         </div>
         <h5 class="productItem__name">
@@ -36,10 +36,27 @@ export default {
         background: white;
         border-radius: 4px;
         max-height: 170px;
+        cursor: pointer;
+
+        @media (max-width: 763px) {
+            max-width: none;
+            align-items: center;
+        }
 
         &__imgs {
             display: flex;
             justify-content: end;
+
+            @media (max-width: 763px) {
+                width: 100%;
+                position: relative;
+                
+                img {
+                    &:first-child {
+                        margin: 0 auto;
+                    }
+                }
+            }
         }
 
         &__statuses {
@@ -47,6 +64,11 @@ export default {
             flex-direction: column;
             padding-left: 25px;
             justify-content: space-around;
+
+            @media (max-width: 763px) {
+                position: absolute;
+                height: 70px;
+            }
         }
 
         &__name {

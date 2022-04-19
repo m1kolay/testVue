@@ -3,10 +3,10 @@
         <h3 class="sideBarFilterItem__title">{{sideBarFilter.title}}</h3>
         <div class="sideBarFilterItem__select">
             <div class="sideBarFilterItem__info">
-                <img src="../assets/SideBarFilterItem.png" alt="sideBarImg"/>
+                <img src="../../assets/SideBarFilterItem.png" alt="sideBarImg"/>
                 <h4>Показать все</h4>
             </div>
-            <img src="../assets/arrowRight.svg" alt="arrowRight"/>
+            <img src="../../assets/arrowRight.svg" alt="arrowRight"/>
         </div>
     </div>
 </template>

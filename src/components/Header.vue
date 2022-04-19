@@ -27,6 +27,9 @@
             <img class="select__arrow" src="../assets/arrowDown.svg">
         </div>
         <button class="header__login"><img src="../assets/login.svg"/>ЛИЧНЫЙ КАБИНЕТ</button>
+        <div class="header__burger">
+            <span></span>
+        </div>
     </header>
 </template>
 
@@ -45,11 +48,16 @@ export default {
         position: relative;
         width: calc(100% - 360px);
         left: 360px;
-        max-height: 100px;
-        padding: 14px 0px;
+        height: 100px;
+        padding: 14px 5px 14px 0;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
+
+        @media (max-width:1080px) {
+            justify-content: end;
+            padding-right: 20px;
+        }
 
         &__nav {
             padding: 9px 15px;
@@ -61,8 +69,20 @@ export default {
             align-items: center;
             white-space: nowrap;
 
+            @media (max-width: 1720px) {
+                font-size: 17px;
+            }
+
             img {
                 padding-right: 12px;
+            }
+
+            @media (max-width:1240px) {
+                font-size: 14px;
+            }
+
+            @media (max-width:1080px) {
+                display: none;
             }
         }
 
@@ -88,6 +108,15 @@ export default {
             width: 105px;
             justify-content: center;
             align-items: center;
+
+            @media (max-width:1520px) {
+                width: 75px;
+                height: 60px;
+            }
+
+            @media (max-width:1460px) {
+                display: none;
+            }
 
             img {
                 max-width: 40px;
@@ -119,6 +148,14 @@ export default {
             align-items: center;
             cursor: pointer;
             margin: 0 20px 0 30px;
+
+            @media (max-width:1700px) {
+                margin: 0 5px 0 10px;
+            }
+
+            @media (max-width:1460px) {
+                display: none;
+            }
         }
 
         &__select {
@@ -133,6 +170,10 @@ export default {
             cursor: pointer;
             margin-right: 25px;
 
+            @media (max-width:1548px) {
+                margin-right: 10px;;
+            }
+
             span {
                 font-size: 20px;
                 line-height: 23px;
@@ -143,6 +184,18 @@ export default {
                 &__arrow {
                     padding-left: 15px;
                 }
+            }
+
+            @media (max-width: 1250px) {
+                padding: 3px 6px;    
+
+                span {
+                    display: none;
+                }
+            }
+
+            @media (max-width:1080px) {
+                display: none;
             }
         }
 
@@ -161,6 +214,65 @@ export default {
             line-height: 26px;
             color: white;
             justify-content: space-between;
+
+            @media (max-width: 1720px) {
+                padding: 10px;
+                font-size: 15px;
+                max-width: 200px;
+                align-items: center;
+            }
+
+            @media (max-width:1240px) {
+                justify-content: center;
+                white-space: nowrap;
+
+                img {
+                    display: none;
+                }
+            }
+
+            @media (max-width:1080px) {
+                display: none;
+            }
+        }
+
+        &__burger {
+            display: none;
+            cursor: pointer;
+
+            @media (max-width:1080px) {
+                display: block;
+                position: relative;
+                width: 30px;
+                height: 20px;
+            }
+
+            &:before,
+            &:after {
+                content: "";
+                background: black;
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                left: 0;
+            }
+
+            &:before {
+                top:0;
+            }
+
+            &::after {
+                bottom:0;
+            }
+
+            span {
+                position: absolute;
+                background: black;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                top: 9px;
+            }
         }
     }
 </style>

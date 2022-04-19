@@ -1,13 +1,13 @@
 <template>
     <div class="productFilterPanel">
         <div class="productFilterPanel__filters">
-            <input class="productFilterPanel__search" type="text" placeholder="Поиск..."/>
+            <input class="productFilterPanel__search" type="text" placeholder="Поиск..." v-on:change="nameFilterHandler($event)"/>
             <div class="productFilterPanel__filter">
                 <div class="productFilterPanel__priceFilter" v-on:click="priceSortHandler">
-                    <img v-bind:class="{ isSorted: isSorted }" src="../assets/ProductFilter.svg" alt="filter"/>
+                    <img v-bind:class="{ isSorted: isSorted }" src="../../assets/ProductFilter.svg" alt="filter"/>
                 </div>
                 <div class="productFilterPanel__popular">
-                    <img src="../assets/star.svg" alt="star"/>
+                    <img src="../../assets/star.svg" alt="star"/>
                     <h4>Популярнее</h4>
                 </div>
             </div>
@@ -15,13 +15,13 @@
         <div class="productFilterPanel__buy">
             <div class="productFilterPanel__autoBuy">
                 <h4>АВТОПОКУПКИ</h4>
-                <img src="../assets/autoBuy.svg"/>
+                <img src="../../assets/autoBuy.svg"/>
             </div>
             <div class="productFilterPanel__basket">
-                <img src="../assets/₽.png" alr="rub"/>
+                <img src="../../assets/₽.png" alr="rub"/>
                 <span>25 285.65</span>
                 <div class="productFilterPanel__basketImg">
-                    <img src="../assets/shop.svg" alt="basket"/>
+                    <img src="../../assets/shop.svg" alt="basket"/>
                 </div>
             </div>
         </div>
@@ -30,35 +30,12 @@
 
 <script>
 
-import { mapMutations } from "vuex"
-
 export default {
-  data() {
-      return{
-          isSorted: false
-      }
-  },
-  computed: {
-      productItems () {
-          return this.$store.state.productItems
-      }
-  },
-  methods: {
-      ...mapMutations([
-          'setProducts'
-      ]),
-      priceSortHandler() {
-          const sortedProductItems = [...this.productItems]
-          if(!this.isSorted) {
-              sortedProductItems.sort((item1, item2) => item1.price - item2.price)
-              this.isSorted = true
-          } else {
-              sortedProductItems.sort((item1, item2) => item2.price - item1.price)
-              this.isSorted = false
-          }
-          this.setProducts(sortedProductItems)               
-      }, 
-  }
+    props: {
+            priceSortHandler: Function,
+            nameFilterHandler: Function,
+            isSorted: Boolean,
+        }
 }
 
 </script>
@@ -68,13 +45,28 @@ export default {
         display: flex;
         justify-content: space-between;
         padding-bottom: 20px;
+
+        @media (max-width: 1600px) {
+            flex-direction: column;
+            row-gap: 15px;
+            align-items: center;
+        }
         
         &__filters {
             display: flex;
+
+            @media (max-width:1080px) {
+                width: 100%;
+            }
+
+            @media (max-width:905px) {
+                flex-direction: column;
+                row-gap: 15px;
+            }
         }
 
         &__search {
-            background-image: url("../assets/lupa.svg");
+            background-image: url("../../assets/lupa.svg");
             background-repeat: no-repeat;
             outline: none;
             padding: 19px 19px 19px 85px;
@@ -88,6 +80,10 @@ export default {
             &::placeholder {
                 color: #D8D8D8;
             }
+
+            @media (max-width:1080px) {
+                width: 100%;
+            }
         }
 
         &__filter {
@@ -97,6 +93,10 @@ export default {
             
             img {
                 transition: all 0.3s;
+            }
+
+            @media (max-width:905px) {
+                margin: 0;
             }
         }
 
@@ -112,6 +112,10 @@ export default {
 
             .isSorted {
                 transform: rotate3d(1, 0, 0, 180deg);
+            }
+
+            @media (max-width:905px) {
+                width: 100%;
             }
         }
 
@@ -134,10 +138,24 @@ export default {
                 line-height: 24px;
                 font-weight: 500;
             }
+
+            @media (max-width:905px) {
+                width: 100%;
+                justify-content: center;
+            }
         }
 
         &__buy {
             display: flex;
+
+            @media (max-width:1080px) {
+                width: 100%;
+            }
+
+            @media (max-width:905px) {
+                flex-direction: column;
+                row-gap: 15px;
+            }
         }
 
         &__autoBuy {
@@ -159,6 +177,10 @@ export default {
             img {
                 padding-left: 12px;
             }
+
+            @media (max-width:1080px) {
+                width: 100%;
+            }
         }
 
         &__basket {
@@ -177,6 +199,14 @@ export default {
                 font-size: 20px;
                 line-height: 23px;
                 padding-left: 10px;
+            }
+
+            @media (max-width:1080px) {
+                width: 100%;
+            }
+
+            @media (max-width:905px) {
+                margin: 0;
             }
         }
 
