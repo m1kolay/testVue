@@ -75,11 +75,12 @@ export default {
         }
 
         &__products {
-            display: flex;
-            flex-wrap: wrap;
-            row-gap: 20px;
-            column-gap: 20px;
-            justify-content: start;
+            display: grid;
+            grid-auto-rows: 168px;
+            grid-template-columns: repeat(auto-fill,minmax(168px,1fr));
+            grid-gap: 16px;
+            grid-auto-flow: row;
+            padding-right: 12px;
             max-height: 700px;
             padding-right: 15px;
 

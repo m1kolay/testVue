@@ -34,7 +34,7 @@ export default {
   ol[class]
   {
     margin: 0;
-    font-family: 'Heebo', sans-serif;
+    font-family: 'Gilroy', sans-serif;
   }
   *,
   *::before,

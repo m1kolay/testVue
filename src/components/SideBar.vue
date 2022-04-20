@@ -34,7 +34,7 @@
         </div>
         <p>( C ) COPYRIGHT STARPETS.GG 2020-2022</p>
       </div>
-      <p class="footer__info">BENEFICIARY: CRYSTAL FUTURE OU<br/> REG. NUMBER: 14198230<br/> BENEFICIARY’S ADDRESS: HARJU MAAKOND, TALLINN, KESKLINNA LINNAOSA, PIKK TN 7-5</p>
+      <p class="footer__info">BENEFICIARY: CRYSTAL FUTURE OU<br/> REG. NUMBER: 14198230<br/> BENEFICIARY’S ADDRESS: HARJU MAAKOND, TALLINN, KESKLINNA LINNAOSA, PIKK TN 7</p>
     </div>
   </div>
 </template>
@@ -235,8 +235,8 @@ export default {
 
         &__head {
           position: relative;
-          bottom: 16px;
-          right: 15px;
+          bottom: -4px;
+          right: -17px;
         }
 
         &__chat {
@@ -319,6 +319,7 @@ export default {
 
             &:hover {
               opacity: 1;
+              transition: all 0.3s;
             }
           }
         }
